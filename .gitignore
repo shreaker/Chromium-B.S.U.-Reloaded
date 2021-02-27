@@ -5,6 +5,15 @@
 # ide
 .idea
 .vscode
+# qtcreator
 CMakeLists.txt.user*
-chromium-bsu-reloaded.*
+*.autosave
+*.creator.user*
+*.creator
+*.cflags
+*.config
+*.cxxflags
+*.files
+*.includes
+
 
