@@ -1,0 +1,10 @@
+# build dir
+/build*
+/cmake-build-*
+
+# ide
+.idea
+.vscode
+CMakeLists.txt.user*
+chromium-bsu-reloaded.*
+

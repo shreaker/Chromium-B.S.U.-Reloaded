@@ -1,0 +1,8 @@
+[
+    { include: ["@<SFML/Audio/.*>", "private", "<SFML/Audio.hpp>", "public"] },
+    { include: ["@<SFML/Graphics/.*>", "private", "<SFML/Graphics.hpp>", "public"] },
+    { include: ["@<SFML/System/.*>", "private", "<SFML/System.hpp>", "public"] },
+    { include: ["@<SFML/Window/.*>", "private", "<SFML/Window.hpp>", "public"] },
+
+    { include: ["<catch2/../trompeloeil.hpp>", "private", "<catch2/catch.hpp>", "public"] }
+]

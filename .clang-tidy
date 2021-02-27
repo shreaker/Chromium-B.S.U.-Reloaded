@@ -1,0 +1,8 @@
+#clang v8
+
+---
+Checks: '*,-android-*,-fuchsia-*,-zircon-*,-objc-*,-llvm-header-guard,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers'
+WarningsAsErrors: '*'
+HeaderFilterRegex: 'src/(libengine|medieval-fighter|shared)/.*\.(hpp|cpp|h|c)$'
+AnalyzeTemporaryDtors: false
+...
