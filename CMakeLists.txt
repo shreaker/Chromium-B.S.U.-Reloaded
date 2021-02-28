@@ -1,11 +1,15 @@
-cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.19 FATAL_ERROR)
 project(chromium-bsu-reloaded LANGUAGES NONE)
 
 set(GAME_VERSION_MAJOR 0)
 set(GAME_VERSION_MINOR 1)
 set(GAME_VERSION_PATCH 0)
 
-set(CPACK_PACKAGE_NAME "chromium-bsu-reloaded")
+set(ENGINE_VERSION_MAJOR 0)
+set(ENGINE_VERSION_MINOR 1)
+set(ENGINE_VERSION_PATCH 0)
+
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
 set(CPACK_PACKAGE_VERSION_MAJOR ${GAME_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${GAME_VERSION_MINOR})
@@ -52,13 +56,14 @@ endif()
 find_program(MEMORYCHECK_COMMAND valgrind)
 find_program(CLANG_TIDY_EXE clang-tidy)
 find_program(IWYU_EXE NAMES include-what-you-use iwyu)
-find_package(Git REQUIRED) # we need this for retrieving externals
+find_package(Git REQUIRED)
 
+include(ExternalProjectUtils)
 include(LinkLibraryUtils)
 include(CTest)
 include(CPack)
 
-set(EXTERNAL_INSTALL_LOCATION "${CMAKE_BINARY_DIR}/extern")
+set(EXTERNAL_INSTALL_LOCATION "${CMAKE_BINARY_DIR}/external")
 include_directories("${EXTERNAL_INSTALL_LOCATION}/include")
 link_directories("${EXTERNAL_INSTALL_LOCATION}/lib")
 
@@ -69,4 +74,5 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_SOURCE_DIR}/resources/*")
 add_custom_target(resources SOURCES ${RESOURCE_FILES})
 
-add_subdirectory(src)
+add_subdirectory(external)
+add_subdirectory(projects)

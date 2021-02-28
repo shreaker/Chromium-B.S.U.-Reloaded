@@ -1,8 +1,136 @@
-#clang v8
+# clang-tidy-11
 
 ---
-Checks: '*,-android-*,-fuchsia-*,-zircon-*,-objc-*,-llvm-header-guard,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers'
+Checks: '
+*,
+
+# Incompatible with C++ attribute fallthrough in switch/case statements
+-bugprone-branch-clone,
+
+# Triggers for basically every "global" `const` variable that is not a POD
+# -cert-err58-cpp,
+
+-google-build-using-namespace,
+-llvm-header-guard,
+-modernize-use-trailing-return-type,
+
+# Disable checks
+-abseil-*,
+-android-*,
+-fuchsia-*,
+-objc-*,
+-zircon-*,
+-llvmlibc-*,
+
+# Disable aliases
+-cert-con36-c,
+-cert-con54-cpp,
+-cert-dcl03-c,
+-cert-dcl16-c,
+-cert-dcl37-c,
+-cert-dcl51-cpp,
+-cert-dcl54-cpp,
+-cert-dcl59-cpp,
+-cert-err09-cpp,
+-cert-err61-cpp,
+-cert-fio38-c,
+-cert-msc30-c,
+-cert-msc32-c,
+-cert-oop11-cpp,
+-cert-oop54-cpp,
+-cert-pos44-c,
+-cert-str34-c,
+-cppcoreguidelines-avoid-c-arrays,
+-cppcoreguidelines-avoid-magic-numbers,
+-cppcoreguidelines-c-copy-assignment-signature,
+-cppcoreguidelines-explicit-virtual-functions,
+-cppcoreguidelines-non-private-member-variables-in-classes,
+-fuchsia-header-anon-namespaces,
+-google-readability-braces-around-statements,
+-google-readability-function-size,
+-google-readability-namespace-comments,
+-hicpp-avoid-c-arrays,
+-hicpp-braces-around-statements,
+-hicpp-deprecated-headers,
+-hicpp-explicit-conversions,
+-hicpp-function-size,
+-hicpp-invalid-access-moved,
+-hicpp-member-init,
+-hicpp-move-const-arg,
+-hicpp-named-parameter,
+-hicpp-new-delete-operators,
+-hicpp-no-array-decay,
+-hicpp-no-malloc,
+-hicpp-noexcept-move,
+-hicpp-special-member-functions,
+-hicpp-static-assert,
+-hicpp-undelegated-constructor,
+-hicpp-uppercase-literal-suffix,
+-hicpp-use-auto,
+-hicpp-use-emplace,
+-hicpp-use-equals-default,
+-hicpp-use-equals-delete,
+-hicpp-use-noexcept,
+-hicpp-use-nullptr,
+-hicpp-use-override,
+-hicpp-vararg,
+-llvm-else-after-return,
+-llvm-qualified-auto
+'
+
 WarningsAsErrors: '*'
-HeaderFilterRegex: 'src/(libengine|medieval-fighter|shared)/.*\.(hpp|cpp|h|c)$'
+HeaderFilterRegex: '.*\.(hpp|cpp|h|c)$'
 AnalyzeTemporaryDtors: false
+CheckOptions:
+  - key:             bugprone-assert-side-effect.AssertMacros
+    value:           'Q_ASSERT,Q_ASSERT_X,Q_CHECK_PTR'
+  - key:             bugprone-assert-side-effect.CheckFunctionCalls
+    value:           '1'
+  - key:             bugprone-suspicious-string-compare.WarnOnLogicalNotComparison
+    value:           '1'
+  - key:             cppcoreguidelines-narrowing-conversions.PedanticMode
+    value:           '1'
+  - key:             cppcoreguidelines-special-member-functions.AllowMissingMoveFunctions
+    value:           '1'
+  - key:             cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
+    value:           '1'
+  - key:             hicpp-multiway-paths-covered.WarnOnMissingElse
+    value:           '1'
+  - key:             misc-throw-by-value-catch-by-reference.WarnOnLargeObject
+    value:           '1'
+  - key:             misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+    value:           '1'
+  - key:             modernize-use-nullptr.NullMacros
+    value:           'NULL,Q_NULLPTR'
+
+  - key:             readability-identifier-naming.AbstractClassPrefix
+    value:           "I"
+  - key:             readability-identifier-naming.ClassCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.EnumCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.FunctionCase
+    value:           camelBack
+  - key:             readability-identifier-naming.MemberCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.MemberPrefix
+    value:           'm'
+  - key:             readability-identifier-naming.PublicMemberPrefix
+    value:           ''
+  - key:             readability-identifier-naming.PublicMemberCase
+    value:           camelBack
+  - key:             readability-identifier-naming.ParameterCase
+    value:           camelBack
+  - key:             readability-identifier-naming.UnionCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.VariableCase
+    value:           camelBack
+  - key:             readability-identifier-naming.GlobalVariableCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.GlobalConstantCase
+    value:           CamelCase
+  - key:             readability-identifier-naming.GlobalConstantPrefix
+    value:           'c'
+  - key:             readability-identifier-naming.NamespaceCase
+    value:           lower_case
 ...

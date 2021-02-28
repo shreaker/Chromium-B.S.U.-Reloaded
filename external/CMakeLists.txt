@@ -1,13 +1,6 @@
-#disable all warnings for 3rdparty libs
-add_compile_options(
-    "$<$<CXX_COMPILER_ID:GNU>:-w>"
-    "$<$<CXX_COMPILER_ID:MSVC>:/w>"
-)
-
-#add_subdirectory(googletest)
-add_subdirectory(catch2)
 add_subdirectory(trompeloeil)
 add_subdirectory(sfml)
+add_subdirectory(catch2)
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" PARENT_SCOPE)
 

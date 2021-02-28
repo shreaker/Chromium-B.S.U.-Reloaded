@@ -9,26 +9,19 @@ class Engine {
 public:
     struct EngineVersion {
     public:
-        const uint16_t major;
-        const uint16_t minor;
-        const uint16_t patch;
+        const std::uint16_t major;
+        const std::uint16_t minor;
+        const std::uint16_t patch;
     };
 
-public:
-    explicit Engine();
-
+    Engine();
     virtual ~Engine();
-
     Engine(const Engine& other);
-
     Engine& operator=(const Engine& other);
-
     Engine(Engine&& other) noexcept;
-
     Engine& operator=(Engine&& other) noexcept;
 
     static EngineVersion getVersion();
-
     void sfmlDemoFunction();
 
 private:

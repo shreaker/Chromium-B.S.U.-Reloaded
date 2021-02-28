@@ -49,18 +49,17 @@ void Engine::sfmlDemoFunction() {
     mImplementation->sfmlDemoFunction();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 Engine::EngineVersion Engine::Implementation::getVersion() {
-    return {version::ENGINE_VERSION_MAJOR,
-            version::ENGINE_VERSION_MINOR,
-            version::ENGINE_VERSION_PATCH};
+    return {version::cEngineVersionMajor,
+            version::cEngineVersionMinor,
+            version::cEngineVersionPatch};
 }
 
-void Engine::Implementation::sfmlDemoFunction() {
-    const unsigned int windowSize{400};
+void Engine::Implementation::
+    sfmlDemoFunction() {  // NOLINT(readability-convert-member-functions-to-static)
+    constexpr unsigned int windowSize{400};
     sf::RenderWindow window{sf::VideoMode{windowSize, windowSize}, "SFML works!"};
-    sf::CircleShape shape{windowSize / 2.0F};
+    sf::CircleShape shape{windowSize / 2.0F};  // NOLINT(readability-magic-numbers)
     shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen()) {

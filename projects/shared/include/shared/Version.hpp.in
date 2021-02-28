@@ -1,0 +1,13 @@
+#include <cstdint>
+
+#pragma once
+
+namespace version {
+constexpr std::uint32_t cGameVersionMajor{@GAME_VERSION_MAJOR@};
+constexpr std::uint32_t cGameVersionMinor{@GAME_VERSION_MINOR@};
+constexpr std::uint32_t cGameVersionPatch{@GAME_VERSION_PATCH@};
+
+constexpr std::uint32_t cEngineVersionMajor{@ENGINE_VERSION_MAJOR@};
+constexpr std::uint32_t cEngineVersionMinor{@ENGINE_VERSION_MINOR@};
+constexpr std::uint32_t cEngineVersionPatch{@ENGINE_VERSION_PATCH@};
+}  // namespace version
