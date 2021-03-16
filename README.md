@@ -1,6 +1,7 @@
 # Chromium-B.S.U.-Reloaded
 Chromium B.S.U. Reloaded is an arcade-style, top-scrolling space shooter. \
 Reimplemention of Chromium B.S.U in modern C++ and SFML (replaces SDL). 
+[![Build Status](https://travis-ci.com/shreaker/Chromium-B.S.U.-Reloaded.svg?branch=develop)](https://travis-ci.com/shreaker/Chromium-B.S.U.-Reloaded)
 
 ## Original Chromium B.S.U. 
 Website: http://chromium-bsu.sourceforge.net \
