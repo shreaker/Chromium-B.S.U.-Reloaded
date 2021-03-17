@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.19 FATAL_ERROR)
 project(chromium-bsu-reloaded LANGUAGES NONE)
 
+option(RUN_CLANG_TIDY "Run clang-tidy" ON)
+option(RUN_IWYU "Run iwyu" ON)
+option(RUN_MEMORYCHECK "Run memorycheck" ON)
+
 set(GAME_VERSION_MAJOR 0)
 set(GAME_VERSION_MINOR 1)
 set(GAME_VERSION_PATCH 0)
@@ -9,13 +13,13 @@ set(ENGINE_VERSION_MAJOR 0)
 set(ENGINE_VERSION_MINOR 1)
 set(ENGINE_VERSION_PATCH 0)
 
+####################################################################################
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
 set(CPACK_PACKAGE_VERSION_MAJOR ${GAME_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${GAME_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${GAME_VERSION_PATCH})
 
-####################################################################################
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -58,6 +62,7 @@ find_program(CLANG_TIDY_EXE clang-tidy)
 find_program(IWYU_EXE NAMES include-what-you-use iwyu)
 find_package(Git REQUIRED)
 
+include(BuildUtils)
 include(ExternalProjectUtils)
 include(LinkLibraryUtils)
 include(CTest)
@@ -69,10 +74,6 @@ link_directories("${EXTERNAL_INSTALL_LOCATION}/lib")
 
 # generate JSON compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
-
-# resource files
-file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_SOURCE_DIR}/resources/*")
-add_custom_target(resources SOURCES ${RESOURCE_FILES})
 
 add_subdirectory(external)
 add_subdirectory(projects)

@@ -5,7 +5,7 @@ PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/.
 files=()
 while IFS=  read -r -d $'\0'; do
     files+=("$REPLY")
-done < <(find "$PROJECT_DIR/src" \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hh' -o -name '*.hpp' \) -print0)
+done < <(find "$PROJECT_DIR" \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hh' -o -name '*.hpp' \) -print0)
 
 invalid=""
 for file in "${files[@]}"
