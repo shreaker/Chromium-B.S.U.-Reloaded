@@ -1,0 +1,48 @@
+language: cpp
+os: linux
+dist: focal
+compiler: gcc
+
+git:
+  quiet: true
+  depth: 3
+
+#branches:
+#  only:
+#  - master
+#  - develop
+
+addons:
+  apt:
+#    sources:
+#      - sourceline": 'ubuntu-toolchain-r/test'
+#      - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main'
+#        key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+    update: true
+    packages:
+      - gcc-9
+      - g++-9
+      - clang-format-11
+      - clang-tidy-11
+      - valgrind
+
+env:
+  global:
+    - GTEST_COLOR=TRUE
+    - CTEST_BUILD_FLAGS=-j4
+    - CC_COMPILER=gcc-9
+    - CXX_COMPILER=g++-9
+
+install:
+# get dependencies
+  - sudo ./scripts/install-dependencies.sh
+  - ln -s /usr/bin/clang-format-11 $HOME/bin/clang-format
+  - ln -s /usr/bin/clang-tidy-11 $HOME/bin/clang-tidy
+  - export CC=$CC_COMPILER
+  - export CXX=$CXX_COMPILER
+# update cmake
+  - travis_retry wget -qO- "https://cmake.org/files/v3.19/cmake-3.19.6-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C ~/.local
+
+script:
+  - ./scripts/check-source-format.sh
+  - ./scripts/build-and-test.sh

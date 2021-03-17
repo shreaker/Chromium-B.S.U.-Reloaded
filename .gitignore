@@ -1,0 +1,19 @@
+# build dir
+/build*
+/cmake-build-*
+
+# ide
+.idea
+.vscode
+# qtcreator
+CMakeLists.txt.user*
+*.autosave
+*.creator.user*
+*.creator
+*.cflags
+*.config
+*.cxxflags
+*.files
+*.includes
+
+
