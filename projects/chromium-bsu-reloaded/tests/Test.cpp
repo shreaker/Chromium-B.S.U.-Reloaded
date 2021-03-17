@@ -4,7 +4,8 @@
 
 #include "MockDemo.hpp"
 
-TEST_CASE("main test case", "dummy") {
+TEST_CASE("main test case", "dummy")
+{
     MockDemo mock;
 
     REQUIRE_CALL(mock, test()).TIMES(1);

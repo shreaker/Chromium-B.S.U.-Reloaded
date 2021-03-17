@@ -16,12 +16,6 @@ trap fail ERR SIGINT SIGTERM SIGKILL
 
 apt update
 
-# Tools
-apt install -y cmake build-essential ninja-build git
-
-# Dev tools
-#apt install -y git clang-format-8 clang-tidy-8 valgrind
-
 # SFML Dependencies
 apt install -y libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev
 

@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+
+function(add_cxx_compiler_flag flag)
+    string(MAKE_C_IDENTIFIER ${flag} flag_supported)
+    check_cxx_compiler_flag(${flag} ${flag_supported})
+    if(${${flag_supported}})
+        add_compile_options(${flag})
+    endif()
+endfunction()
+
+function(add_cxx_compiler_flags)
+    foreach(flag IN LISTS ARGN)
+        add_cxx_compiler_flag(${flag})
+    endforeach()
+endfunction()
